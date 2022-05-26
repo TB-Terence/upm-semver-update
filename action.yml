@@ -11,7 +11,7 @@ inputs:
     default: './Runtime/AssemblyInfo.cs'
 outputs:
   semver: # id of the output
-    description: `New version number`
+    description: 'New version number'
   package-json-path:
     description: 'package-json-path'
   assembly-info-path:
