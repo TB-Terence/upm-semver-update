@@ -17,3 +17,6 @@ jobs:
           ref: ${{ github.ref }}
       - name: Find Package Version
         uses: TB-Terence/upm-semver-update@upm
+        with:
+          package-json-path: './test/package.json'
+          assembly-info-path: './test/Runtime/AssemblyInfo.cs'
