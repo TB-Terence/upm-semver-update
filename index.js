@@ -13,13 +13,38 @@ try {
     const assemblyInfoPath = process.env.ASSEMBLY_INFO_PATH || core.getInput('assembly-info-path');
     var assemblyInfo = getAssemblyInfo(assemblyInfoPath).toString();
     const currentVersion = packageJson.version.toString().split('.');
-    var ver = {
+    var versionObj = {
         major: currentVersion[0],
         minor: currentVersion[1],
         patch: currentVersion[2]
     }
-    console.log(ver);
-    const newVersion = `${parseInt(currentVersion[0]) + 1}.${parseInt(currentVersion[1]) + 1}.${parseInt(currentVersion[2]) + 1}`;
+    console.log(versionObj);
+
+    const commit = github.context.payload.head_commit;
+    const type = "patch";
+    if(commit.includes('feat')){
+        type = 'minor',
+        console.log('new feature');
+    }
+    else if(commit.includes('BREAKING CHANGE')){
+        type = "major"
+        console.log('BREAKING CHANGE');
+    }
+    switch(type){
+        case "major":
+            versionObj.major++;
+            versionObj.minor = 0;
+            versionObj.patch = 0;
+            break;
+        case "minor":
+            versionObj.minor++;
+            versionObj.patch = 0;
+                break;
+        case "patch":
+            versionObj.patch++;
+            break;
+    }
+    const newVersion = `${versionObj.major}.${versionObj.minor}.${versionObj.patch}`;
     core.setOutput('new-version', newVersion);
     packageJson.version = newVersion;
     assemblyInfo = assemblyInfo.replace(semverRegex, `("${newVersion}.0")`);

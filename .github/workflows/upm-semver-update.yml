@@ -16,6 +16,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - name: Find Package Version
+        id: upm-semver-update
         uses: TB-Terence/upm-semver-update@upm
         with:
           package-json-path: './test/package.json'
@@ -23,6 +24,6 @@ jobs:
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Update package version via automated action"
+          commit_message: "Update package version to ${{ steps.upm-semver-update.new-version }} via automated action"
           commit_options: '--no-verify --signoff'
           branch: upm
