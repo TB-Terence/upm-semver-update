@@ -22,7 +22,7 @@ try {
 
     const commit = github.context.payload.head_commit;
     const type = "patch";
-    if(commit.includes('feat')){
+    if(commit.message.includes('feat')){
         type = 'minor',
         console.log('new feature');
     }
