@@ -24,6 +24,6 @@ jobs:
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Update package version to ${{ steps.upm-semver-update.new-version }} via automated action"
+          commit_message: "Update package version to ${{ steps.upm-semver-update.outputs.new-version }} via automated action"
           commit_options: '--no-verify --signoff'
           branch: upm

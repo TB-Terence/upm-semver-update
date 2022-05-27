@@ -22,6 +22,7 @@ try {
 
     const commit = github.context.payload.head_commit;
     const type = "patch";
+    console.log(commit);
     if(commit.message.includes('feat')){
         type = 'minor',
         console.log('new feature');
@@ -44,6 +45,7 @@ try {
             versionObj.patch++;
             break;
     }
+    console.log(versionObj);
     const newVersion = `${versionObj.major}.${versionObj.minor}.${versionObj.patch}`;
     core.setOutput('new-version', newVersion);
     packageJson.version = newVersion;
