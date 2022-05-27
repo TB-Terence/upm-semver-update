@@ -10,7 +10,7 @@ inputs:
     required: false
     default: './Runtime/AssemblyInfo.cs'
 outputs:
-  semver: # id of the output
+  new-version: # id of the output
     description: 'New version number'
   package-json-path:
     description: 'package-json-path'
