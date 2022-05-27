@@ -26,7 +26,7 @@ try {
         type = 'minor',
         console.log('new feature');
     }
-    else if(commit.includes('BREAKING CHANGE')){
+    else if(commit.message.includes('BREAKING CHANGE')){
         type = "major"
         console.log('BREAKING CHANGE');
     }
