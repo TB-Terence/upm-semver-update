@@ -21,16 +21,25 @@ try {
     console.log(versionObj);
 
     const commit = github.context.payload.head_commit;
-    var type = "patch";
+    var type = "none";
     console.log(commit);
-    if(commit.message.includes('feat')){
+    if(commit.message.startsWith('fix:')){
+        type ="patch",
+        console.log('new patch');
+    }
+    else if(commit.message.startsWith('feat:')){
         type = 'minor',
         console.log('new feature');
     }
-    else if(commit.message.includes('BREAKING CHANGE')){
+    else if(commit.message.startsWith('BREAKING CHANGE:')){
         type = "major"
         console.log('BREAKING CHANGE');
     }
+    else {
+        core.setOutput('require-update', false);
+        process.exit(0);
+    }
+    core.setOutput('require-update', true);
     switch(type){
         case "major":
             versionObj.major++;

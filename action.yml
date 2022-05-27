@@ -16,6 +16,8 @@ outputs:
     description: 'package-json-path'
   assembly-info-path:
     description: 'assembly-info-path'
+  require-update:
+    description: 'if auto commit should be perform'  
 runs:
   using: 'node16'
   main: 'index.js'
