@@ -1,0 +1,23 @@
+name: Unity Package Semver Update
+description: Update Unity Package Version
+inputs:
+  package-json-path:
+    description: 'Path of the pakcage.json file'
+    required: true
+    default: './package.json'
+  assembly-info-path:
+    description: 'Path of the AssemblyInfo file'
+    required: false
+    default: './Runtime/AssemblyInfo.cs'
+outputs:
+  new-version: # id of the output
+    description: 'New version number'
+  package-json-path:
+    description: 'package-json-path'
+  assembly-info-path:
+    description: 'assembly-info-path'
+  require-update:
+    description: 'if auto commit should be perform'  
+runs:
+  using: 'node16'
+  main: 'index.js'
