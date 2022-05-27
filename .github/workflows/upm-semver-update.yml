@@ -22,7 +22,8 @@ jobs:
           package-json-path: './test/package.json'
           assembly-info-path: './test/Runtime/AssemblyInfo.cs'
       - name: Commit New Version 
-        if: ${{ steps.upm-semver-update.outputs.require-update }}
+        if: steps.upm-semver-update.outputs.require-update
+        run: echo "Require updating version"
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Update package version to ${{ steps.upm-semver-update.outputs.new-version }} via automated action"

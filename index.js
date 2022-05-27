@@ -39,6 +39,7 @@ try {
         core.setOutput('require-update', false);
         process.exit(0);
     }
+    console.log('require from index.js');
     core.setOutput('require-update', true);
     switch(type){
         case "major":
