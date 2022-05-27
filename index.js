@@ -21,7 +21,7 @@ try {
     console.log(versionObj);
 
     const commit = github.context.payload.head_commit;
-    const type = "patch";
+    var type = "patch";
     console.log(commit);
     if(commit.message.includes('feat')){
         type = 'minor',
